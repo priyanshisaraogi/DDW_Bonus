@@ -13,14 +13,14 @@ To clone our project directory from Github, change to your current working direc
 
 ```shell
 cd Downloads
-git clone
+git clone https://github.com/priyanshisaraogi/DDW_Bonus.git
 ```
 
 ## Go to the project folder
-After downloading the repository, you can go to the folder named `ml_application`. It is the `root` folder of our application.
+After downloading the repository, you can go to the folder named `BONUS`. It is the `root` folder of our application.
 
 ```shell
-cd dtp_ddw/ml_application
+cd DDW_Bonus/BONUS
 ```
 ## Creating a Virtual Environment
 **Open Anaconda Prompt to do the following steps.**
