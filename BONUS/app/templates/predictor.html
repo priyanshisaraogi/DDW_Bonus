@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<style>
+    img {
+            max-width: 75%;
+            max-height: 75%;
+            display: block;
+            margin: auto;
+        }
+</style>
+<div class="container">
+    <h1>{{title}}</h1>
+    <p>
+        Welcome to our cutting-edge predictor page, where the power of data converges with advanced machine learning to illuminate the future of agricultural economics in India. Harnessing the predictive capabilities of our state-of-the-art model, this platform empowers you to make informed decisions about food subsidies, ensuring a strategic allocation of resources for a resilient and sustainable agricultural landscape.
+    </p>
+    <h2>How It Works:</h2>
+    <p>Please input a Data Size of size greater than 0 and smaller or equal to 1. Give it some time to load (less than 10 seconds)</p>
+    <p>If not loading, please check your inputs</p>
+    <p>Health Index, Poverty and Malnourished Children MUST BE GREATER THAN 0</p>
+    <h2>Data Form:</h2>
+    <form method="post" action="/predictor">
+        {{ dataForm.hidden_tag() }}
+        <div>
+            {{ dataForm.dataSize.label }} {{ dataForm.dataSize }}
+        </div>
+        <div>
+            {{ dataForm.health_index.label }} {{ dataForm.health_index }}
+        </div>
+        <div>
+            {{ dataForm.poverty.label }} {{ dataForm.poverty }}
+        </div>
+        <div>
+            {{ dataForm.malnourished_children.label }} {{ dataForm.malnourished_children }}
+        </div>
+        <div>
+            {{ dataForm.submit() }}
+        </div>
+    </form>
+
+    {% if scatterPlot is defined %}
+    <h2>Scatter Plot:</h2>
+    <p>This plots y predicted against y actual. The closer the line is to y=x, the better the current model.</p>
+    <img src="../static/scatter_plot.png" alt="Scatter Plot">
+    {% endif %}
+
+    {% if coefficients is defined and intercept is defined %}
+    <h2>Your Coefficients:</h2>
+    <p>Coefficient, Health Index</p>
+    <p>{{ coefficients[0][0] }}</p>
+    <p>Coefficient, Poverty</p>
+    <p>{{ coefficients[0][1] }}</p>
+    <p>Coefficient, Malnourished Children</p>
+    <p>{{ coefficients[0][2] }}</p>
+    <h2>Intercept:</h2>
+    <p>{{ intercept[0] }}</p>
+    {% endif %}
+
+    {% if predictedY is defined %}
+    <h2>Predicted GNI/Capita:</h2>
+    <p>{{ predictedY }}</p>
+    {% endif %}
+
+    {% if boxPlot is defined %}
+    <h2>Assesing your GNI/Capita:</h2>
+    <p>Box Plot of GNI/Capita from 2014-2019</p>
+    <img src="../static/boxPlot.png" alt="Box Plot">
+    {% if predictedY is defined and predictedY <= 9.04375 %}
+        <h3>Your GNI/Capita is lower or equal to Q1. It is LOW</h3>
+        <p>Give subsidies to schools for food programs-school food programs, investment, etc </p>
+    {% elif predictedY > 9.753%}
+        <h3>Your GNI/Capita is greater or equal to Q3. It is HIGH</h3>
+        <p>Do further monitoring, but likely no need for agricultural subsidies.</p>
+    {% else %}
+        <h3>Your GNI/Capita is neither HIGH nor LOW</h3>
+        <p>Do further monitoring!</p>
+    {% endif %}
+    {% endif %}
+
+    {% if trainRMSE is defined %}
+    <h2>RMSE of current Model on train Data</h2>
+    <p>{{ trainRMSE }}</p>
+    {% endif %}
+
+    {% if RMSE is defined %}
+    <h2>RMSE of current Model using test Data</h2>
+    <p>{{ RMSE }}</p>
+    {% endif %}
+
+</div>
+{% endblock %}

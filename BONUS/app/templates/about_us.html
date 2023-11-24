@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h1>{{title}}</h1>
+    <p> 
+        At AgriEcon Predictor, we are on a mission to revolutionize the way Indian leaders make crucial decisions regarding food subsidies in different states. 
+        Our commitment is rooted in leveraging advanced machine learning to provide accurate insights into state-wise food prices and Consumer Price Index (CPI) trends.
+
+    </p>
+    <h2> Our Vision </h2>
+    <p>
+        We envision a future where every state in India has access to optimized food subsidies, fostering economic growth and ensuring food security. By harnessing the power of data, we aim to contribute to a more sustainable and equitable agricultural landscape.
+    </p>
+
+    <h1>Explaining Our Model</h1>
+    <p>From our Jupyter Notebook, we have managed to derive the best combination of factors for our model, which are</p>
+    <ul>
+        <li>Health Index</li>
+        <li>Poverty</li>
+        <li>Malnourished Children</li>
+    </ul>
+
+    <h2>Explaining the Variables</h2>
+    <ul>
+        <li>
+            <p>Health Index</p>
+            <p>A high Health Index reflects a population's better access to healthcare and improved well-being. Higher GNI can correlate with better nutrition and lifestyle choices due to increased affordability of healthier foods, access to fitness facilities, and education. These factors can positively impact health, leading to higher Health Index scores. Thus, we predict that Health Index has a strong direct correlation to GNI, which will help in our model’s prediction. 
+
+                The Health Index is calculated based on the four indicators (mean years of schooling of adults aged 25+, expected years of schooling, life expectancy (LEXP indicator), and gross national income per capita). </p>
+        </li>
+        <li>
+            <p>Poverty</p>
+            <p>The Poverty Index refers to the prevalence and severity of poverty within a population or a geographical area. Countries with higher GNI stem from high economic growth, which can create employment opportunities, increase wages, and stimulate overall economic activity, potentially reducing poverty rates as more people gain access to jobs and resources. However, it doesn’t reflect income distribution. Countries with high GNI/Capita might still have significant income inequalities. Thus, we predict that Poverty Index will have a inverse correlation to GNI/Capita and can aid us in our model. 
+
+                The Poverty Index used here is calculated by the percentage of poorest households with Mean International Wealth Index(IWI) score of less than 35 in India. The value is a percentage that lies between 0-100. </p>
+        </li>
+        <li>
+            <p>Malnourished Children</p>
+            <p>Malnourished children refer to the proportion of children who do not receive the required amount of nutrition to survive. Higher GNI/Capita correlates with improved access to food due to increased purchasing power. Wealthier nations can afford to import or produce a wider variety of nutritious foods, reducing the likelihood of food shortages and improving access to a diverse diet. Thus, this variable will aid us in our model. 
+
+                Malnourished Children is calculated as the percentage of children aged 0-59 months who are below minus two standard deviations from median weight-for-age of the World Health Organization (WHO) Child Growth Standards.</p>
+        </li>
+        <li>
+            <p>Output: GNI/Capita</p>
+            <p>GDP of State= Consumption + Investment + Government Spending + (Exports of Goods and Services – Imports of Goods and Services)
+
+                GNI of State= GDP + Net Income Earned from Abroad
+                
+                GNI/Capita = GNI of State/Population of State
+                
+                Gross National Income Per Capita (GNI/Capita) measures the average income per person in each state. Higher GNI per capita generally means people have more purchasing power which enables individuals and households to afford a diverse range of nutritious foods, reducing the risk of hunger or malnutrition. It also means there is better infrastructure, distribution networks, and social safety nets, resulting in improved access to food in terms of physical availability in markets and accessibility due to higher Government Spending within the state. It also correlates with increased Investment, which can lead to improved agricultural productivity, increasing the availability of food within the country. Thus, GNI/Capita is a good measure of food security.
+            </p>
+        </li>
+    </ul>
+    <h1> The higher the GNI/Capita, the better the food security</h1>
+</div>
+{% endblock %}

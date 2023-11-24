@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body, h1, h2, h3, p, ul, li {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        /* Navbar */
+        nav {
+            background-color: #333;
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+            padding: 10px;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #ffcc00; /* Change the color on hover */
+        }
+
+        /* Main content styling */
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 0 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        p {
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+    </style>
+    <title>{% block title %}Title{% endblock %}</title>
+    <script type="module">import * as library from './static/__target__/library.js'; window.library = library;</script>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index">Home</a></li>
+            <li><a href="about_us">About</a></li>
+            <li><a href="predictor">Get Started</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>
