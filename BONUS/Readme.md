@@ -62,3 +62,4 @@ Click on the link. On Vocareum, do `Ctrl+Click` (Windows) or `Cmd+Click` (Mac) o
 Press `Ctrl+C` to stop the web app from running.
 
 # Getting Output
+The users can input the data size, health index, poverty and malnourished children. Our code recalculates the value of the coefficients and uses that to `calculate predicted GNI`.
